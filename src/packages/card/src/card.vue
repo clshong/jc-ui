@@ -2,16 +2,23 @@
   <el-card class="jc-card">
     <!-- 头部区域 -->
     <template v-if="showHeader" #header>
-      <div class="jc-card__header" :class="{ 'cursor-pointer': collapsible }" @click="handleHeaderClick">
+      <div
+        class="jc-card__header"
+        :class="{ 'cursor-pointer': collapsible }"
+        @click="handleHeaderClick"
+      >
         <div class="header-content">
           <!-- 标题插槽（优先级高于 title prop） -->
           <span v-if="title" class="title-text">{{ title }}</span>
-          <slot name="title">
-          </slot>
+          <slot name="title"> </slot>
         </div>
 
         <!-- 折叠图标 -->
-        <el-icon v-if="collapsible" class="arrow-icon" :class="{ 'is-collapsed': collapsed }">
+        <el-icon
+          v-if="collapsible"
+          class="arrow-icon"
+          :class="{ 'is-collapsed': collapsed }"
+        >
           <arrow-up />
         </el-icon>
       </div>
@@ -25,43 +32,44 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { ElCard, ElIcon } from 'element-plus'
-import { ArrowUp } from '@element-plus/icons-vue'
+import { computed } from "vue";
+import { ElCard, ElIcon } from "element-plus";
+import { ArrowUp } from "@element-plus/icons-vue";
 
 defineOptions({
-  name: "JcCard"
-})
+  name: "JcCard",
+  inheritAttrs: false, // 避免属性继承到根元素
+});
 
 const props = defineProps({
   title: String,
   collapsible: {
     type: Boolean,
-    default: false
+    default: false,
   },
   collapsed: {
     type: Boolean,
-    default: false
+    default: false,
   },
   headerClickable: {
     type: Boolean,
-    default: true
-  }
-})
+    default: true,
+  },
+});
 
-const emit = defineEmits(['update:collapsed'])
+const emit = defineEmits(["update:collapsed"]);
 
 // 自动判断是否显示头部
 const showHeader = computed(() => {
-  return props.title || props.collapsible
-})
+  return props.title || props.collapsible;
+});
 
 // 处理头部点击
 const handleHeaderClick = () => {
   if (props.collapsible && props.headerClickable) {
-    emit('update:collapsed', !props.collapsed)
+    emit("update:collapsed", !props.collapsed);
   }
-}
+};
 </script>
 
 <style lang="less">
