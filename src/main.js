@@ -17,4 +17,4 @@ app.use(ElementPlus)
 app.use(index)
 app.mount('#app')
 
-console.log('已注册的全局组件:', Object.keys(app._context.components))
+// console.log('已注册的全局组件:', Object.keys(app._context.components))

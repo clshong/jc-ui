@@ -1,6 +1,5 @@
 <template>
   <el-button
-    :type="type"
     v-bind="$attrs"
     v-on="$attrs"
     :disabled="disabled"
@@ -21,11 +20,6 @@ defineOptions({
   inheritAttrs: false, // 避免属性继承到根元素
 });
 const props = defineProps({
-  // 按钮类型
-  type: {
-    type: String,
-    default: "primary",
-  },
   // 按钮文字
   text: String,
   // 图标

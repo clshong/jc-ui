@@ -80,7 +80,7 @@ const fetchOptions = async () => {
   try {
     loading.value = true;
     // const res = await dictList({ dictCode: props.dictCode });
-
+    let res = { code: 0, data: [{ label: 1, value: 2 }] };
     if (res.code === 0) {
       options.value = res.data.map((item) => ({
         label: item.dataKey,
